@@ -1,0 +1,41 @@
+import urllib2
+import urllib;
+import HTMLParser;
+from bs4 import BeautifulSoup;
+import pymysql;
+
+"""
+This first part is an extremely simple web crawler which only reads in requested data
+"""
+
+url = 'https://www.reddit.com/'
+request=urllib2.Request(url);
+response=urllib2.urlopen(request);
+page=response.read();
+#print page;
+
+
+"""
+This second part uses html data parser to parse data
+"""
+
+urlPage=[];
+
+class textParser(HTMLParser.HTMLParser):
+    def handle_data(self,data):
+         if(data!='\n'):
+            urlPage.append(data);
+
+secondParser=textParser();
+secondParser.feed(urllib.urlopen(url).read());
+secondParser.close();
+for element in urlPage:
+    pass;
+    #print element;
+
+
+
+
+
+
+
